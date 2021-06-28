@@ -1,0 +1,7 @@
+<% if !@friends.nil? %>
+  <p> friend list </p>
+  <% @friends.each do |friend| %>
+    <%= friend.username %>
+    <%= link_to "delete friend", relationships_path(user: friend), class: "nav-link", method: :delete %>
+  <% end %>
+<% end %>

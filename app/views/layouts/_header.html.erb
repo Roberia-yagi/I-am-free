@@ -1,0 +1,13 @@
+<header class="navbar">
+  <div class="container">
+    <%= link_to "I'm free now", root_url, id: "logo" %>
+    <nav class="navbar navbar-nav navbar-right">
+      <% if logged_in? %>
+        <%= link_to "my page", user_path, class: "nav-link" %>
+        <%= link_to "logout", logout_path, class: "nav-link", method: :delete %>
+      <% else %>
+        <%= link_to "login through twitter", "/auth/twitter", class: "nav-link", method: :post %>
+      <% end %>
+    </nav>
+  </div>
+</header>
