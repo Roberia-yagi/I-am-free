@@ -1,7 +1,12 @@
 <% if !@friends.nil? %>
+<div class="continer">
+<ul class="list-group">
   <p> friend list </p>
   <% @friends.each do |friend| %>
-    <%= friend.username %>
-    <%= link_to "delete friend", relationships_path(user: friend), class: "nav-link", method: :delete %>
+    <li class="list-group-item">
+      <%= friend.username %>
+      <%= link_to "delete friend", relationships_path(user: friend), class: "nav-link", method: :delete %>
+    </li>
   <% end %>
+</ul>
 <% end %>

@@ -1,16 +1,33 @@
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
 <p>user search</p>
 <%= form_tag(root_path, :method => 'get' ) do %>
   <%= text_field_tag :search %>
   <%= submit_tag 'Search', :name => nil %>
 <% end %>
 <% if !@searched_user.nil? %>
-  <%= @searched_user.username %>
-  <% if !@current_user.friend?(@searched_user) %>
-    <%= link_to "add friend", relationships_path(user: @searched_user), class: "nav-link", method: :post %>
-  <% else %>
-    <%= link_to "delete friend", relationships_path(user: @searched_user), class: "nav-link", method: :delete %>
-  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Friend</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><%= @searched_user.username %></td>
+        <td>
+          <% if !@current_user.friend?(@searched_user) %>
+            <%= link_to "add friend", relationships_path(user: @searched_user), class: "nav-link", method: :post %>
+          <% else %>
+            <%= link_to "delete friend", relationships_path(user: @searched_user), class: "nav-link", method: :delete %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
 <% end %>
