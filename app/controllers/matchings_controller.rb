@@ -8,7 +8,7 @@ class MatchingsController < ApplicationController
 
   def search
     unless params[:search].nil?
-      @searched_user = User.find_by(username: params[:search])
+      @searched_user = User.find_by(twitter_id: params[:search])
       flash.now[:alart_user] = "User not found" if @searched_user.nil?
     end
   end

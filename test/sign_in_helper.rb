@@ -4,7 +4,7 @@ module SignInHelper
     OmniAuth.config.add_mock(
       user.provider,
       uid: user.uid,
-      info: { nickname: user.username,
+      info: { nickname: user.twitter_id,
               image: user.image_url }
     )
 

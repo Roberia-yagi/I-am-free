@@ -4,7 +4,7 @@
   <p> friend list </p>
   <% @friends.each do |friend| %>
     <li class="list-group-item">
-      <%= friend.username %>
+      <%= friend.twitter_id %>
       <%= link_to "delete friend", relationships_path(user: friend), class: "nav-link", method: :delete %>
     </li>
   <% end %>

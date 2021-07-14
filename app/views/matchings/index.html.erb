@@ -1,5 +1,7 @@
 <%= provide(:title, "Home") %>
-<% if logged_in? %>
-  <%= render 'layouts/search' %>
-  <%= render 'layouts/friendlist' %>
-<% end %>
+<div class=container>
+  <% if logged_in? %>
+    <%= render 'layouts/search' %>
+    <%= render 'layouts/friendlist' %>
+  <% end %>
+</div>

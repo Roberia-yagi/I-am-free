@@ -8,7 +8,6 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "search", with: "name2"
     click_on 'Search'
     click_on 'add friend'
-    fill_in "search", with: "name2"
-    click_on 'Search'
+    click_on 'delete friend'
   end
 end

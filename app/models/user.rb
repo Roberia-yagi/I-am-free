@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates :provider, presence: true
   validates :uid, presence: true
-  validates :username, presence: true
+  validates :twitter_id, presence: true
   validates :image_url, presence: true
 
   has_many :users, through: :relationships
@@ -9,13 +9,16 @@ class User < ApplicationRecord
   def self.find_or_create_from_auth_hash!(auth_hash)
     provider = auth_hash[:provider]
     uid = auth_hash[:uid]
-    username = auth_hash[:info][:name]
+    twitter_id = auth_hash[:info][:nickname]
     image = auth_hash[:info][:image]
 
-    User.find_or_create_by!(provider: provider, uid: uid) do |user|
-      user.username = username
+    exist_user = User.find_or_create_by!(provider: provider, uid: uid) do |user|
+      user.twitter_id = twitter_id
       user.image_url = image
     end
+
+    exist_user.update(twitter_id: twitter_id) unless exist_user.twitter_id == twitter_id
+    exist_user
   end
 
   def friend?(other_user)
