@@ -30,9 +30,7 @@ class User < ApplicationRecord
   end
 
   def add_friend(other_user)
-    return false if Relationship.where(friend1_id: id, friend2_id: other_user.id).exists?
-
-    return false if Relationship.where(friend1_id: id, friend2_id: other_user.id).exists?
+    return false if friend?(other_user)
 
     Relationship.create!(friend1_id: id, friend2_id: other_user.id)
 
@@ -41,9 +39,7 @@ class User < ApplicationRecord
   end
 
   def remove_friend(other_user)
-    return false unless Relationship.where(friend1_id: id, friend2_id: other_user.id).exists?
-
-    return false unless Relationship.where(friend1_id: id, friend2_id: other_user.id).exists?
+    return false unless friend?(other_user)
 
     Relationship.find_by(friend1_id: id, friend2_id: other_user.id).destroy
 

@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_042527) do
+ActiveRecord::Schema.define(version: 2021_08_20_062222) do
+
+  create_table "connections", force: :cascade do |t|
+    t.integer "userid_1"
+    t.integer "userid_2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "matchings", force: :cascade do |t|
+    t.integer "userid_1"
+    t.integer "userid_2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "queries", force: :cascade do |t|
+    t.integer "userid_1"
+    t.integer "userid_2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer "friend1_id"

@@ -1,12 +1,20 @@
 <% if !@friends.nil? %>
-<div class="continer">
-<ul class="list-group">
-  <p> friend list </p>
-  <% @friends.each do |friend| %>
-    <li class="list-group-item">
-      <%= friend.twitter_id %>
-      <%= link_to "delete friend", relationships_path(user: friend), class: "nav-link", method: :delete %>
-    </li>
-  <% end %>
-</ul>
+  <div class="continer">
+    <ul class="list-group">
+      <p> friend list </p>
+      <% @friends.each do |friend| %>
+        <li class="list-group-item">
+          <%= friend.twitter_id %>
+          <ul class="nav">
+            <li class="nav-item">
+              <%= link_to "delete friend", relationships_path(user: friend), class: "nav-link", method: :delete %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "add queue", connections_path(user: friend), class: "nav-link", method: :create %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
